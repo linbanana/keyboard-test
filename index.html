@@ -350,6 +350,10 @@
             function equalkey(which,key){
 
                 switch(which){
+                    //0 == Insert
+                    case 45:
+                        which = 96;
+                        break;
                     //1 == End
                     case 35:
                         which = 97;
@@ -392,6 +396,10 @@
                         which = 105;
                         key   = "Page Up";
                         break;
+                    //. == Delete
+                    case 46:
+                        which = 110;
+                        break;
                 }
                 return {
                          which: which,
@@ -430,6 +438,10 @@
             });
 
             $(document).on('keydown',function(e){
+
+                console.log(e.which);
+                console.log(e.originalEvent.location);
+                console.log(e.key);
 
                 var which    = e.which;
                 var location = e.originalEvent.location;
