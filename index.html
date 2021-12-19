@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Keyboard test</title>
+        <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta property="og:title" content="鍵盤測試 Keyboard test">
+        <meta property="og:description" content="以 jquery 撰寫的鍵盤測試工具，可測試鍵盤按鍵是否正常。">
+        <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            body{
+                text-align: center;
+                background-color: #ffebcd;
+            }
+
+            #keyboard {
+                position: relative;
+                width: 1175px;
+                height: 350px;
+                background: #000;
+                border: 2px solid #000;
+                border-radius: 5px;
+            }
+
+            .key {
+                position: absolute;
+                padding: 3px;
+                display: inline-block;
+                width: 40px;
+                height: 35px;
+                /*background: #000;*/
+                color: #fff;
+                border: 1px solid #fff;
+                border-radius: 3px;
+                text-align: center;
+                vertical-align:middle;
+            }
+
+            .hold {
+                background: #a3e0ff;
+                color: #000;
+            }
+
+            .pressed {
+                background: #fff;
+                color: #000;
+            }
+
+            span {
+                position: absolute;
+            }
+
+            .fa-bars{
+                padding: 2px;
+                border: 1px solid;
+            }
+
+            #log{
+                background: #e9e9e9;
+                border: 1px solid #ccc;
+                width: 1175px;
+                height: 75px;
+                text-align: left;
+                overflow-y: scroll;
+                vertical-align: middle;
+            }
+
+            .logo{
+                position: absolute;
+                left: 990px;
+                top: 25px;
+                color: #fff;
+                height: 35px;
+                font-size: 24px;
+                text-decoration: underline;
+            }
+        </style>
+
+    </head>
+    <body>
+        <center>
+            <p>按下鍵盤上的按鍵檢測功能是否正常。</p>
+            <p>Press the feature on the keyboard to check whether the function is normal.</p>
+
+            <div id="keyboard">
+
+                <div class="logo">Keyboard test</div>
+
+                <!-- 第一列：Esc, F1, F2, ... -->
+
+                <div class="key" style="left: 20px; top: 20px;"></div>
+                <div class="key" style="left: 110px; top: 20px;"></div>
+                <div class="key" style="left: 160px; top: 20px;"></div>
+                <div class="key" style="left: 210px; top: 20px;"></div>
+                <div class="key" style="left: 260px; top: 20px;"></div>
+                <div class="key" style="left: 340px; top: 20px;"></div>
+                <div class="key" style="left: 390px; top: 20px;"></div>
+                <div class="key" style="left: 440px; top: 20px;"></div>
+                <div class="key" style="left: 490px; top: 20px;"></div>
+                <div class="key" style="left: 570px; top: 20px;"></div>
+                <div class="key" style="left: 620px; top: 20px;"></div>
+                <div class="key" style="left: 670px; top: 20px;"></div>
+                <div class="key" style="left: 720px; top: 20px;"></div>
+
+                <div class="key" style="left: 790px; top: 20px;"></div>
+                <div class="key" style="left: 840px; top: 20px;"></div>
+                <div class="key" style="left: 890px; top: 20px;"></div>
+
+                <!-- 第二列：`, 1, 2, ... -->
+
+                <div class="key" style="left: 20px; top: 80px;"></div>
+                <div class="key" style="left: 70px; top: 80px;"></div>
+                <div class="key" style="left: 120px; top: 80px;"></div>
+                <div class="key" style="left: 170px; top: 80px;"></div>
+                <div class="key" style="left: 220px; top: 80px;"></div>
+                <div class="key" style="left: 270px; top: 80px;"></div>
+                <div class="key" style="left: 320px; top: 80px;"></div>
+                <div class="key" style="left: 370px; top: 80px;"></div>
+                <div class="key" style="left: 420px; top: 80px;"></div>
+                <div class="key" style="left: 470px; top: 80px;"></div>
+                <div class="key" style="left: 520px; top: 80px;"></div>
+                <div class="key" style="left: 570px; top: 80px;"></div>
+                <div class="key" style="left: 620px; top: 80px;"></div>
+                <div class="key" style="left: 670px; top: 80px; width: 85px"></div>
+
+                <div class="key" style="left: 790px; top: 80px;"></div>
+                <div class="key" style="left: 840px; top: 80px;"></div>
+                <div class="key" style="left: 890px; top: 80px;"></div>
+
+                <div class="key" style="left: 960px; top: 80px;"></div>
+                <div class="key" style="left: 1010px; top: 80px;"></div>
+                <div class="key" style="left: 1060px; top: 80px;"></div>
+                <div class="key" style="left: 1110px; top: 80px;"></div>
+
+                <!-- 第三列：Tab, Q, W, ... -->
+
+                <div class="key" style="left: 20px; top: 130px; width: 55px"></div>
+                <div class="key" style="left: 90px; top: 130px;"></div>
+                <div class="key" style="left: 140px; top: 130px;"></div>
+                <div class="key" style="left: 190px; top: 130px;"></div>
+                <div class="key" style="left: 240px; top: 130px;"></div>
+                <div class="key" style="left: 290px; top: 130px;"></div>
+                <div class="key" style="left: 340px; top: 130px;"></div>
+                <div class="key" style="left: 390px; top: 130px;"></div>
+                <div class="key" style="left: 440px; top: 130px;"></div>
+                <div class="key" style="left: 490px; top: 130px;"></div>
+                <div class="key" style="left: 540px; top: 130px;"></div>
+                <div class="key" style="left: 590px; top: 130px;"></div>
+                <div class="key" style="left: 640px; top: 130px;"></div>
+                <div class="key" style="left: 690px; top: 130px; width: 65px"></div>
+
+                <div class="key" style="left: 790px; top: 130px;"></div>
+                <div class="key" style="left: 840px; top: 130px;"></div>
+                <div class="key" style="left: 890px; top: 130px;"></div>
+
+                <div class="key" style="left: 960px; top: 130px;"></div>
+                <div class="key" style="left: 1010px; top: 130px;"></div>
+                <div class="key" style="left: 1060px; top: 130px;"></div>
+                <div class="key" style="left: 1110px; top: 130px; height: 85px"></div>
+
+                <!-- 第四列：Caps, A, S, ... -->
+
+                <div class="key" style="left: 20px; top: 180px; width: 65px"></div>
+                <div class="key" style="left: 100px; top: 180px;"></div>
+                <div class="key" style="left: 150px; top: 180px;"></div>
+                <div class="key" style="left: 200px; top: 180px;"></div>
+                <div class="key" style="left: 250px; top: 180px;"></div>
+                <div class="key" style="left: 300px; top: 180px;"></div>
+                <div class="key" style="left: 350px; top: 180px;"></div>
+                <div class="key" style="left: 400px; top: 180px;"></div>
+                <div class="key" style="left: 450px; top: 180px;"></div>
+                <div class="key" style="left: 500px; top: 180px;"></div>
+                <div class="key" style="left: 550px; top: 180px;"></div>
+                <div class="key" style="left: 600px; top: 180px;"></div>
+                <div class="key" style="left: 650px; top: 180px; width: 105px"></div>
+
+                <div class="key" style="left: 960px; top: 180px;"></div>
+                <div class="key" style="left: 1010px; top: 180px;"></div>
+                <div class="key" style="left: 1060px; top: 180px;"></div>
+
+                <!-- 第五列：Shift, Z, X, ... -->
+
+                <div class="key" style="left: 20px; top: 230px; width: 95px"></div>
+                <div class="key" style="left: 130px; top: 230px;"></div>
+                <div class="key" style="left: 180px; top: 230px;"></div>
+                <div class="key" style="left: 230px; top: 230px;"></div>
+                <div class="key" style="left: 280px; top: 230px;"></div>
+                <div class="key" style="left: 330px; top: 230px;"></div>
+                <div class="key" style="left: 380px; top: 230px;"></div>
+                <div class="key" style="left: 430px; top: 230px;"></div>
+                <div class="key" style="left: 480px; top: 230px;"></div>
+                <div class="key" style="left: 530px; top: 230px;"></div>
+                <div class="key" style="left: 580px; top: 230px;"></div>
+                <div class="key" style="left: 630px; top: 230px; width: 125px"></div>
+
+                <div class="key" style="left: 840px; top: 230px;"></div>
+
+                <div class="key" style="left: 960px; top: 230px;"></div>
+                <div class="key" style="left: 1010px; top: 230px;"></div>
+                <div class="key" style="left: 1060px; top: 230px;"></div>
+                <div class="key" style="left: 1110px; top: 230px; height: 85px"></div>
+
+                <!-- 第六列：Ctrl, Win, Alt, ... -->
+
+                <div class="key" style="left: 20px; top: 280px; width: 50px"></div>
+                <div class="key" style="left: 85px; top: 280px; width: 50px"></div>
+                <div class="key" style="left: 150px; top: 280px; width: 50px"></div>
+                <div class="key" style="left: 215px; top: 280px; width: 280px"></div>
+                <div class="key" style="left: 510px; top: 280px; width: 50px"></div>
+                <div class="key" style="left: 575px; top: 280px; width: 50px"></div>
+                <div class="key" style="left: 640px; top: 280px; width: 50px"></div>
+                <div class="key" style="left: 705px; top: 280px; width: 50px"></div>
+
+                <div class="key" style="left: 790px; top: 280px;"></div>
+                <div class="key" style="left: 840px; top: 280px;"></div>
+                <div class="key" style="left: 890px; top: 280px;"></div>
+
+                <div class="key" style="left: 960px; top: 280px; width: 85px"></div>
+                <div class="key" style="left: 1060px; top: 280px;"></div>
+
+            </div>
+            <pre id="log" style="display: none;"></pre>
+
+        </center>
+
+        <footer>
+            <p href="https://ubin.io/linbananaBlog">Copyright © 2021 by <a href="https://github.com/linbanana" style="color: #000;">linbanana</a></p><br>
+        </footer>
+
+        <script>
+        $(function() {
+            var default_keys = [//第一列
+                                {description: "ESC",              Number: 27,  location: 0, value: 1, bottomleft: 0},
+                                {description: "F1",               Number: 112, location: 0, value: 1, bottomleft: 0},
+                                {description: "F2",               Number: 113, location: 0, value: 1, bottomleft: 0},
+                                {description: "F3",               Number: 114, location: 0, value: 1, bottomleft: 0},
+                                {description: "F4",               Number: 115, location: 0, value: 1, bottomleft: 0},
+                                {description: "F5",               Number: 116, location: 0, value: 1, bottomleft: 0},
+                                {description: "F6",               Number: 117, location: 0, value: 1, bottomleft: 0},
+                                {description: "F7",               Number: 118, location: 0, value: 1, bottomleft: 0},
+                                {description: "F8",               Number: 119, location: 0, value: 1, bottomleft: 0},
+                                {description: "F9",               Number: 120, location: 0, value: 1, bottomleft: 0},
+                                {description: "F10",              Number: 121, location: 0, value: 1, bottomleft: 0},
+                                {description: "F11",              Number: 122, location: 0, value: 1, bottomleft: 0},
+                                {description: "F12",              Number: 123, location: 0, value: 1, bottomleft: 0},
+                                {description: "Print Screen",     Number: 44,  location: 0, value: 1, bottomleft: 0},
+                                {description: "Scroll Lock",      Number: 145, location: 0, value: 1, bottomleft: 0},
+                                {description: "Pause Break",      Number: 19,  location: 0, value: 1, bottomleft: 0},
+
+                                //第二列
+                                {description: "~＿`",             Number: 192, location: 0, value: 2, bottomleft: 1},
+                                {description: "!＿1",             Number: 49,  location: 0, value: 2, bottomleft: 1},
+                                {description: "@＿2",             Number: 50,  location: 0, value: 2, bottomleft: 5},
+                                {description: "#＿3",             Number: 51,  location: 0, value: 2, bottomleft: 2},
+                                {description: "$＿4",             Number: 52,  location: 0, value: 2, bottomleft: 2},
+                                {description: "%＿5",             Number: 53,  location: 0, value: 2, bottomleft: 3},
+                                {description: "^＿6",             Number: 54,  location: 0, value: 2, bottomleft: 2},
+                                {description: "&＿7",             Number: 55,  location: 0, value: 2, bottomleft: 3},
+                                {description: "*＿8",             Number: 56,  location: 0, value: 2, bottomleft: 2},
+                                {description: "(＿9",             Number: 57,  location: 0, value: 2, bottomleft: 2},
+                                {description: ")＿0",             Number: 48,  location: 0, value: 2, bottomleft: 0},
+                                {description: "_＿-",             Number: 189, location: 0, value: 2, bottomleft: 0},
+                                {description: "+＿=",             Number: 187, location: 0, value: 2, bottomleft: 2},
+                                {description: "Backspace",        Number: 8,   location: 0, value: 1, bottomleft: 0},
+                                {description: "Insert",           Number: 45,  location: 0, value: 1, bottomleft: 0},
+                                {description: "Home",             Number: 36,  location: 0, value: 1, bottomleft: 0},
+                                {description: "Page Up",          Number: 33,  location: 0, value: 1, bottomleft: 0},
+                                {description: "Num Lock",         Number: 144, location: 0, value: 1, bottomleft: 0},
+                                {description: "/",                Number: 111, location: 3, value: 1, bottomleft: 0},
+                                {description: "*",                Number: 106, location: 3, value: 1, bottomleft: 0},
+                                {description: "-",                Number: 109, location: 3, value: 1, bottomleft: 0},
+
+                                //第三列
+                                {description: "Tab",              Number: 9,   location: 0, value: 1, bottomleft: 0},
+                                {description: "Q",                Number: 81,  location: 0, value: 1, bottomleft: 0},
+                                {description: "W",                Number: 87,  location: 0, value: 1, bottomleft: 0},
+                                {description: "E",                Number: 69,  location: 0, value: 1, bottomleft: 0},
+                                {description: "R",                Number: 82,  location: 0, value: 1, bottomleft: 0},
+                                {description: "T",                Number: 84,  location: 0, value: 1, bottomleft: 0},
+                                {description: "Y",                Number: 89,  location: 0, value: 1, bottomleft: 0},
+                                {description: "U",                Number: 85,  location: 0, value: 1, bottomleft: 0},
+                                {description: "I",                Number: 73,  location: 0, value: 1, bottomleft: 0},
+                                {description: "O",                Number: 79,  location: 0, value: 1, bottomleft: 0},
+                                {description: "P",                Number: 80,  location: 0, value: 1, bottomleft: 0},
+                                {description: "{＿[",             Number: 219, location: 0, value: 2, bottomleft: 3},
+                                {description: "}＿]",             Number: 221, location: 0, value: 2, bottomleft: 3},
+                                {description: "|＿\\",            Number: 220, location: 0, value: 2, bottomleft: 3},
+                                {description: "Delete",           Number: 46,  location: 0, value: 1, bottomleft: 0},
+                                {description: "End",              Number: 35,  location: 0, value: 1, bottomleft: 0},
+                                {description: "Page Down",        Number: 34,  location: 0, value: 1, bottomleft: 0},
+                                {description: "7",                Number: 103, location: 3, value: 1, bottomleft: 0},
+                                {description: "8",                Number: 104, location: 3, value: 1, bottomleft: 0},
+                                {description: "9",                Number: 105, location: 3, value: 1, bottomleft: 0},
+                                {description: "+",                Number: 107, location: 3, value: 1, bottomleft: 0},
+
+                                //第四列
+                                {description: "CapsLock",         Number: 20,  location: 0, value: 1, bottomleft: 0},
+                                {description: "A",                Number: 65,  location: 0, value: 1, bottomleft: 0},
+                                {description: "S",                Number: 83,  location: 0, value: 1, bottomleft: 0},
+                                {description: "D",                Number: 68,  location: 0, value: 1, bottomleft: 0},
+                                {description: "F",                Number: 70,  location: 0, value: 1, bottomleft: 0},
+                                {description: "G",                Number: 71,  location: 0, value: 1, bottomleft: 0},
+                                {description: "H",                Number: 72,  location: 0, value: 1, bottomleft: 0},
+                                {description: "J",                Number: 74,  location: 0, value: 1, bottomleft: 0},
+                                {description: "K",                Number: 75,  location: 0, value: 1, bottomleft: 0},
+                                {description: "L",                Number: 76,  location: 0, value: 1, bottomleft: 0},
+                                {description: ":＿;",             Number: 186, location: 0, value: 2, bottomleft: 3},
+                                {description: "\"＿\'",           Number: 186, location: 0, value: 2, bottomleft: 3},
+                                {description: "Enter",            Number: 13,  location: 0, value: 1, bottomleft: 0},
+                                {description: "4",                Number: 100, location: 3, value: 1, bottomleft: 0},
+                                {description: "5",                Number: 101, location: 3, value: 1, bottomleft: 0},
+                                {description: "6",                Number: 102, location: 3, value: 1, bottomleft: 0},
+
+                                //第五列
+                                {description: "Shift",            Number: 16,  location: 1, value: 1, bottomleft: 0},
+                                {description: "Z",                Number: 90,  location: 0, value: 1, bottomleft: 0},
+                                {description: "X",                Number: 88,  location: 0, value: 1, bottomleft: 0},
+                                {description: "C",                Number: 67,  location: 0, value: 1, bottomleft: 0},
+                                {description: "V",                Number: 86,  location: 0, value: 1, bottomleft: 0},
+                                {description: "B",                Number: 66,  location: 0, value: 1, bottomleft: 0},
+                                {description: "N",                Number: 78,  location: 0, value: 1, bottomleft: 0},
+                                {description: "M",                Number: 77,  location: 0, value: 1, bottomleft: 0},
+                                {description: "<＿,",             Number: 188, location: 0, value: 2, bottomleft: 0},
+                                {description: ">＿.",             Number: 190, location: 0, value: 2, bottomleft: 0},
+                                {description: "?＿/",             Number: 191, location: 0, value: 2, bottomleft: 0},
+                                {description: "Shift",            Number: 16,  location: 2, value: 1, bottomleft: 0},
+                                {description: "fa-chevron-up",    Number: 38,  location: 0, value: 0, bottomleft: 0},
+                                {description: "1",                Number: 97,  location: 3, value: 1, bottomleft: 0},
+                                {description: "2",                Number: 98,  location: 3, value: 1, bottomleft: 0},
+                                {description: "3",                Number: 99,  location: 3, value: 1, bottomleft: 0},
+                                {description: "Enter",            Number: 13,  location: 3, value: 1, bottomleft: 0},
+
+                                //第六列
+                                {description: "Ctrl",             Number: 17,  location: 1, value: 1, bottomleft: 0},
+                                {description: "fa-windows",       Number: 91,  location: 1, value: 0, bottomleft: 0},
+                                {description: "Alt",              Number: 18,  location: 1, value: 1, bottomleft: 0},
+                                {description: "",                 Number: 32,  location: 0, value: 1, bottomleft: 0},
+                                {description: "Alt",              Number: 18,  location: 2, value: 1, bottomleft: 0},
+                                {description: "fa-windows",       Number: 92,  location: 2, value: 0, bottomleft: 0},
+                                {description: "fa-bars",          Number: 93,  location: 0, value: 0, bottomleft: 0},
+                                {description: "Ctrl",             Number: 17,  location: 2, value: 1, bottomleft: 0},
+                                {description: "fa-chevron-left",  Number: 37,  location: 0, value: 0, bottomleft: 0},
+                                {description: "fa-chevron-down",  Number: 40,  location: 0, value: 0, bottomleft: 0},
+                                {description: "fa-chevron-right", Number: 39,  location: 0, value: 0, bottomleft: 0},
+                                {description: "0",                Number: 96,  location: 3, value: 1, bottomleft: 0},
+                                {description: ".",                Number: 110, location: 3, value: 1, bottomleft: 0}
+                               ];
+
+            function equalkey(which,key){
+
+                switch(which){
+                    //1 == End
+                    case 35:
+                        which = 97;
+                        break;
+                    //2 == Down
+                    case 40:
+                        which = 98;
+                        key = "<i class='fa fa-chevron-down' aria-hidden='true'></i>";
+                        break;
+                    //3 == PageDown
+                    case 34:
+                        which = 99;
+                        key   = "Page Down";
+                        break;
+                    //4 == Left
+                    case 37:
+                        which = 100;
+                        key = "<i class='fa fa-chevron-left' aria-hidden='true'></i>";
+                        break;
+                    //5 == Clear
+                    case 12:
+                        which = 101;
+                        break;
+                    //6 == Right
+                    case 39:
+                        which = 102;
+                        key = "<i class='fa fa-chevron-right' aria-hidden='true'></i>";
+                        break;
+                    //7 == home
+                    case 36:
+                        which = 103;
+                        break;
+                    //8 == up
+                    case 38:
+                        which = 104;
+                        key = "<i class='fa fa-chevron-up' aria-hidden='true'></i>";
+                        break;
+                    //9 == PageUp
+                    case 33:
+                        which = 105;
+                        key   = "Page Up";
+                        break;
+                }
+                return {
+                         which: which,
+                         key: key
+                       };
+            }
+
+            function sethtml(selectors, text, icon){
+                if(icon){
+                    $(selectors).html("<span><i class='fa " + text + "' aria-hidden='true'></i></span>");
+                }else{
+                    $(selectors).html("<span>" + text + "</span>");
+                }
+                var temp_width = $(selectors).width() - $(selectors).find("span").width();
+                var temp_height = $(selectors).height() - $(selectors).find("span").height();
+                $(selectors).find("span").css("left",Math.ceil(temp_width/2)+2);
+                $(selectors).find("span").css("top",Math.ceil(temp_height/2)+2);
+            }
+
+            $(document).on('keyup',function(e){
+
+                var which    = e.which;
+                var location = e.originalEvent.location;
+                var key      = e.key;
+
+                if(location === 3){
+                    var temp = equalkey(which,key);
+                    which = temp.which;
+                    var htmltext = temp.key;
+                    sethtml("#key_" + which + "_" + location, htmltext, false);
+                }
+
+                $("#key_" + which + "_" + location).removeClass("pressed").addClass("hold");
+
+                e.preventDefault();
+            });
+
+            $(document).on('keydown',function(e){
+
+                var which    = e.which;
+                var location = e.originalEvent.location;
+                var key      = e.key;
+
+                if(location === 3){
+                    var temp = equalkey(which,key);
+                    which = temp.which;
+                    var htmltext = temp.key;
+                    sethtml("#key_" + which + "_" + location, htmltext, false);
+                }
+
+                $("#key_" + which + "_" + location).removeClass("hold").addClass("pressed");
+
+                var YYYYMMDD = new Date().toISOString().slice(0,10);
+                var hhmmss   = new Date().toISOString().slice(11,20);
+
+                $("#log").css("display","");
+                $("#log").prepend(YYYYMMDD + " " + hhmmss + ": " + key + "\n");
+                e.preventDefault();
+            });
+
+            $('.key').each(function(index) {
+
+                try{
+                    var value = default_keys[index].value;
+                    var htmltext = "";
+
+                    switch(true){
+                        // value === 0 print icon
+                        case value===0:
+                            $(this).attr('id', 'key_' + default_keys[index].Number + "_" + default_keys[index].location);
+                            htmltext = default_keys[index].description;
+                            sethtml(this, htmltext, true);
+                            break;
+                        case value===1:
+                            $(this).attr('id', 'key_' + default_keys[index].Number + "_" + default_keys[index].location);
+                            htmltext = default_keys[index].description;
+                            sethtml(this, htmltext, false);
+                            break;
+                        default:
+                            $(this).attr('id', 'key_' + default_keys[index].Number + "_" + default_keys[index].location);
+                            htmltext = default_keys[index].description.replace("＿","<br>");
+                            sethtml(this, htmltext, false);
+                            break;
+                    }
+
+                }catch (e) {
+                    // console.log(e);
+                }
+            });
+
+        });
+        </script>
+
+    </body>
+</html>
